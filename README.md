@@ -4,7 +4,7 @@ ctpn+crnn Scene character recognition
 
 # ctpn:
 
-   https://github.com/tianzhi0549/CTPN
+   https://github.com/Cabchinoe/CTPN
 	
 # crnn:
 
