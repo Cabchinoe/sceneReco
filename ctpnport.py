@@ -45,17 +45,12 @@ def ctpnSource():
 
 def getCharBlock(text_detector,im):
     im, f=resize_im(im, cfg.SCALE, cfg.MAX_SCALE)
-    cv2.imshow("src", im)
     tmp = im.copy()
-    #timer=Timer()
-    #timer.tic()
     text_lines=text_detector.detect(im)
 
-    #print "Number of the detected text lines: %s"%len(text_lines)
-    #print "Time: %f"%timer.toc()
 
-    text_recs = draw_boxes(tmp, text_lines, caption='im_name', wait=True)
-    return tmp,text_recs
+    text_recs,im_with_box = draw_boxes(tmp, text_lines, caption='im_name', wait=True)
+    return tmp,text_recs,im_with_box
 
 
     
