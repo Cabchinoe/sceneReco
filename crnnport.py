@@ -55,8 +55,9 @@ def crnnRec(model,converter,im,text_recs):
         partImg = dumpRotateImage(im,degrees(atan2(pt2[1]-pt1[1],pt2[0]-pt1[0])),pt1,pt2,pt3,pt4)
         #mahotas.imsave('%s.jpg'%index, partImg)
        
-
-        image = Image.fromarray(partImg ).convert('L')
+        #some partImg may h=0 or w=0
+        try:image = Image.fromarray(partImg ).convert('L')
+        except:continue
         #height,width,channel=partImg.shape[:3]
         #print(height,width,channel)
         #print(image.size) 
