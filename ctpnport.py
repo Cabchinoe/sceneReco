@@ -1,5 +1,5 @@
 
-import sys
+import sys, os
 import numpy as np
 class cfg:
     MEAN=np.float32([102.9801, 115.9465, 122.7717])
@@ -18,10 +18,11 @@ class cfg:
     MIN_SIZE_SIM=0.7
     TEXT_PROPOSALS_WIDTH=16
 
+dir_path = os.path.dirname(os.path.abspath(__file__))
 def init():
-    sys.path.insert(0, "./CTPN/tools")
-    sys.path.insert(0, "./CTPN/caffe/python")
-    sys.path.insert(0, "./CTPN/src")
+    sys.path.insert(0, os.path.join(dir_path,"./CTPN/tools"))
+    sys.path.insert(0, os.path.join(dir_path,"./CTPN/caffe/python"))
+    sys.path.insert(0, os.path.join(dir_path,"./CTPN/src"))
 init()
 
 from other import draw_boxes, resize_im, CaffeModel
@@ -34,8 +35,8 @@ from utils.timer import Timer
 
 def ctpnSource():
     DEMO_IMAGE_DIR = "img/"
-    NET_DEF_FILE = "CTPN/models/deploy.prototxt"
-    MODEL_FILE = "CTPN/models/ctpn_trained_model.caffemodel"
+    NET_DEF_FILE = os.path.join(dir_path,"CTPN/models/deploy.prototxt")
+    MODEL_FILE = os.path.join(dir_path,"CTPN/models/ctpn_trained_model.caffemodel")
     caffe.set_mode_gpu()
     caffe.set_device(cfg.TEST_GPU_ID)
     # initialize the detectors

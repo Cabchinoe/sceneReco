@@ -1,6 +1,7 @@
 #coding:utf-8
-import sys
-sys.path.insert(1, "./crnn")
+import sys, os
+dir_path = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(1, os.path.join(dir_path,"./crnn"))
 
 import random
 import torch
@@ -9,7 +10,6 @@ import torch.optim as optim
 import torch.utils.data
 from torch.autograd import Variable 
 import numpy as np
-import os
 import util
 import dataset
 from PIL import Image
@@ -40,7 +40,7 @@ def crnnSource():
     alphabet = keys.alphabet
     converter = util.strLabelConverter(alphabet)
     model = crnn.CRNN(32, 1, len(alphabet)+1, 256, 1).cuda()
-    path = './crnn/samples/netCRNN63.pth'
+    path = os.path.join(dir_path,'./crnn/samples/netCRNN63.pth')
     model.load_state_dict(torch.load(path))
     return model,converter
 
