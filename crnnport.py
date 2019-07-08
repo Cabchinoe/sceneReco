@@ -78,7 +78,7 @@ def crnnRec(model,converter,im,text_recs):
         #preds = preds.squeeze(2)
         preds = preds.transpose(1, 0).contiguous().view(-1)
         preds_size = Variable(torch.IntTensor([preds.size(0)]))
-        raw_pred = converter.decode(preds.data, preds_size.data, raw=True)
+        #raw_pred = converter.decode(preds.data, preds_size.data, raw=True)
         sim_pred = converter.decode(preds.data, preds_size.data, raw=False)
         #print('%-20s => %-20s' % (raw_pred, sim_pred))
         index = index + 1
