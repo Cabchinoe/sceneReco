@@ -32,8 +32,7 @@ RUN wget  https://github.com/opencv/opencv_contrib/archive/3.4.4.zip -O opencv_c
 RUN wget https://github.com/opencv/opencv/archive/3.4.4.zip -O opencv-3.4.4.zip && unzip opencv-3.4.4.zip
 RUN cd opencv-3.4.4 && mkdir build && cd build
 WORKDIR  /home/opencv-3.4.4/build
-RUN cmake .. -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-3.4.4/modules -DWITH_CUDA=ON -DWITH_CUBLAS=ON -DDCU
-DA_NVCC_FLAGS="-D_FORCE_INLINES" -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda -DCUDA_ARCH_BIN="6.1 7.0 7.5" -DOPENCV_ENABLE_NONFREE:BOOL=ON
+RUN cmake .. -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-3.4.4/modules -DWITH_CUDA=ON -DWITH_CUBLAS=ON -DDCUDA_NVCC_FLAGS="-D_FORCE_INLINES" -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda -DCUDA_ARCH_BIN="6.1 7.0 7.5" -DOPENCV_ENABLE_NONFREE:BOOL=ON
 RUN make -j8 && make install  && make clean && cd /usr/local/python/ && python setup.py develop
 WORKDIR  /home
 RUN git clone https://github.com/Cabchinoe/sceneTextDetect.git --recursive
